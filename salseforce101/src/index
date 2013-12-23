@@ -1,0 +1,49 @@
+<apex:page controller="indexController" sidebar="false" standardStylesheets="false" showHeader="false">
+    <html>
+        <head>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.1/jquery-ui.min.js"></script>
+            <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.6/angular.min.js"></script>
+            <script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>        
+        
+            <link type="text/css" rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css"/>
+            
+            <!-- Custom css --> 
+            <style type="text/css">
+              body {
+                  padding-top: 60px;
+                  padding-bottom: 40px;
+                  padding-left: 50px;
+              }
+            </style>
+            
+            <!-- Custom js -->
+            <script type="text/javascript">
+                var $j = jQuery.noConflict();
+            </script>
+            
+            <!-- myCtrl -->
+            <script type="text/javascript">
+                var app = angular.module("app", []);
+                app.controller("myCtrl", function($scope) {
+                    $scope.say = "hello";
+                });
+            </script>
+        </head>
+        
+        <body>
+        
+            <button type="button" class="btn btn-primary">Primary</button>
+            
+            <div ng-app="app">
+                <p ng-controller="myCtrl">{{say}}</p>
+                <p>{{10+10}}</p>
+            </div>
+            <apex:form >
+                <apex:commandButton action="{!demof}" value="run"/>
+                <br />
+                <h2>{!demo}</h2>
+            </apex:form>                        
+        </body>
+    </html>
+</apex:page>
