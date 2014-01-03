@@ -1,0 +1,46 @@
+<apex:page controller="JSRemotingBasicsController" id="page" sidebar="false" showHeader="false">
+
+	<html>
+	
+		<head>
+		
+			<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+			<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+			
+		</head>
+		
+		<body>	
+			
+			<script type="text/javascript">  
+			    function getText() {
+			    	var j = jQuery.noConflict();
+			      	var text = j("#text").val();
+			      	JSRemotingBasicsController.doGetText(text,
+			        	function(result, event) {
+			         		if(event.type === 'exception') {
+				           		console.log("exception");
+				           		console.log(event);
+				          	} else if (event.status) {
+				            	text = result;
+				            	document.getElementById('textResponseSpan').innerHTML = text;
+				          	} else {
+				            	console.log(event.message);
+				          	}
+			        	}
+			      );
+			    }
+	  		</script>
+	  		
+	 		<h2>Simple Javascript Remoting Example - returns the length of the input string </h2> <br/> <br/>
+	 		
+			<input type="text" id="text"></input>
+			
+			<button onclick="getText()">Get Length</button> <br/>
+			
+			<span id="textResponseSpan"></span> <br/>						  
+		
+		</body>
+		
+	</html> 
+	  
+</apex:page>
