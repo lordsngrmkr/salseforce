@@ -1,0 +1,53 @@
+<apex:page controller="JSRemotingBasicsController" id="page" sidebar="false" showHeader="false">
+
+	<html>
+	
+		<head>
+		
+			<script src="https://code.jquery.com/jquery-1.10.1.min.js"></script>
+			<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+			
+		</head>
+		
+		<body>	
+			
+			<script type="text/javascript"> 
+				 				
+			    var j$ = jQuery.noConflict();			    	
+			    j$(document).ready(
+			    	function() {
+			    		j$("#button").click(getText);
+			    	}
+			    );
+			    	
+			    function getText() {
+			    	var text = j$("#text").val();
+			    	var text2 = text.split('').reverse().join(''); 
+			      	JSRemotingBasicsController.doGetText(text, text2, helper);
+			    }
+			    
+			    function helper(result, event) {
+			    	if(event.type === 'exception') {
+				    	console.log("exception");
+				        console.log(event);
+				    } else if (event.status) {
+				        j$("#textResponseSpan").text(result);
+				    } else {
+				        console.log(event.message);
+				    }
+			   	}
+	  		</script>
+	  		
+	 		<h2>Simple Javascript Remoting Example - inserts a record in a custom object </h2> <br/> <br/>
+	 		
+			<input type="text" id="text"></input>			
+			
+			<button id="button">create</button><br/>
+			
+			<p id="textResponseSpan"></p> <br/>						  
+		
+		</body>
+		
+	</html> 
+	  
+</apex:page>
