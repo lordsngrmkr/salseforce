@@ -1,0 +1,12 @@
+trigger insertTrigger on Number__c (after insert) {
+		Account newNum = new Account(name = 'triggered');
+    	List<Account> numList = new List<Account>();
+    	
+    	numList.add(newNum);
+    	 
+    	try {    		
+    	 	insert numList;   	 				
+		} catch (DmlException e) { 
+				throw e;
+		}					
+}
